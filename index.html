@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mini Game</title>
+<style>
+body{text-align:center;font-family:Arial;background:#f0f0f0}
+#game{width:500px;height:500px;border:2px solid #000;margin:auto;position:relative;background:#fff}
+#box{width:60px;height:60px;background:green;position:absolute;cursor:pointer}
+</style>
+</head>
+<body>
+<h2>Catch the Box!</h2>
+<p>Score: <span id="score">0</span></p>
+<p>Time: <span id="time">60</span></p>
+<div id="game"><div id="box"></div></div>
+<script>
+let score=0,time=60;
+const box=document.getElementById("box");
+const game=document.getElementById("game");
+function moveBox(){
+box.style.left=Math.random()*360+"px";
+box.style.top=Math.random()*260+"px";
+}
+box.onclick=function(){
+score++;
+document.getElementById("score").textContent=score;
+moveBox();
+};
+moveBox();
+let timer=setInterval(()=>{
+time--;
+document.getElementById("time").textContent=time;
+if(time<=0){
+clearInterval(timer);
+alert("Game Over! Score: "+score);
+box.style.display="none";
+}
+},1000);
+</script>
+</body>
+</html>
